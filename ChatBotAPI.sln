@@ -5,13 +5,19 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatBotAPI", "ChatBotAPI\ChatBotAPI.csproj", "{63FE88EC-C819-4467-B616-9AB8BBDCBF01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatBot.Entities", "ChatBot.Entities\ChatBot.Entities.csproj", "{02FB4014-C109-42F0-87FE-649718810363}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatBot.Entities", "ChatBot.Entities\ChatBot.Entities.csproj", "{02FB4014-C109-42F0-87FE-649718810363}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatBot.Managers", "ChatBot.Managers\ChatBot.Managers.csproj", "{B753AD00-5078-49F8-B4A8-2E38DD8235EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatBot.Managers", "ChatBot.Managers\ChatBot.Managers.csproj", "{B753AD00-5078-49F8-B4A8-2E38DD8235EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatBot.Common", "ChatBot.Common\ChatBot.Common.csproj", "{93781142-9378-4A7C-845D-EF98BF605B2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatBot.Common", "ChatBot.Common\ChatBot.Common.csproj", "{93781142-9378-4A7C-845D-EF98BF605B2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatBot.DataLayer", "ChatBot.DataLayer\ChatBot.DataLayer.csproj", "{8CCEF50A-E4A3-4D16-941D-99A90375A2B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatBot.DataLayer", "ChatBot.DataLayer\ChatBot.DataLayer.csproj", "{8CCEF50A-E4A3-4D16-941D-99A90375A2B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Init", "Init", "{161D7C0D-86CE-4FD4-B043-7A706D1AFE22}"
+	ProjectSection(SolutionItems) = preProject
+		Init\docker-compose.yaml = Init\docker-compose.yaml
+		Init\ReadMe.txt = Init\ReadMe.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
