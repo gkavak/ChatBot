@@ -8,15 +8,10 @@ namespace ChatBot.Common.DataAccess
 {
     public class MongoDbSettings
     {
-        public string ConnectionString;
-        public string Database;
+        public string ConnectionString { get; set; };
 
-        //Configuration için kullanılacak
-        #region Const Values
+        public string DatabaseName { get; set; } ;
 
-        public const string ConnectionStringValue = nameof(ConnectionString);
-        public const string DatabaseValue = nameof(Database);
-
-        #endregion
+        public string CollectionName { get; set; } ;
     }
 }

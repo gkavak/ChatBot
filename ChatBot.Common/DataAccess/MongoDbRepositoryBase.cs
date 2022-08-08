@@ -20,7 +20,8 @@ namespace ChatBot.Common.DataAccess
             this.settings = options.Value;
             var client = new MongoClient(this.settings.ConnectionString);
             var db = client.GetDatabase(this.settings.Database);
-            this.Collection = db.GetCollection<T>(typeof(T).Name.ToLowerInvariant());
+            //this.Collection = db.GetCollection<T>(typeof(T).Name.ToLowerInvariant());
+            this.Collection = db.GetCollection<T>(this.settings.CollectionName);
         }
 
         public virtual IQueryable<T> Get(Expression<Func<T, bool>> predicate = null)
