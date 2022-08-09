@@ -1,9 +1,15 @@
-public class UserRepository : IUserRepository
+using ChatBot.Common.Entities;
+using Microsoft.Extensions.Options;
+namespace ChatBot.Common.DataAccess
 {
-    public UserRepository(IOptions<MongoDbSettings> options)
-    {
-        base(options);
-    }
 
-    public string Authenticate() => "Token claimed!";
+    public class UserRepository : MongoDbRepositoryBase<UserEntity>
+    {
+        public UserRepository(IOptions<MongoDbSettings> options)
+        {
+            base(options);
+        }
+
+        public string Authenticate() => "Token claimed!";
+    }
 }
