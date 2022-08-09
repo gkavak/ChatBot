@@ -2,6 +2,7 @@
 using ChatBot.Common.DataAccess;
 using ChatBot.Common.Entities;
 using ChatBot.DataLayer.Abstract;
+using ChatBot.Enitities;
 using Microsoft.Extensions.Options;
 using System.Linq.Expressions;
 
@@ -17,7 +18,10 @@ namespace ChatBot.DataLayer.Concrete
 
         public async Task<UserEntity> GetUserByEmail(string email)
         {
-            return await this.GetAsync(u => u.Email == email);
+            await Task.CompletedTask;
+            return this.Get(x => x.Email == email).FirstOrDefault();
         }
+
+         
     }
 }

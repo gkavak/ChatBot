@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChatBot.Common.DataAccess;
+using ChatBot.Enitities;
+
 namespace ChatBot.DataLayer.Abstract
 {
     public interface IUserDAL:IRepository<UserEntity,string>

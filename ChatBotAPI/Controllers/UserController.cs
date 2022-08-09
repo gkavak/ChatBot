@@ -1,23 +1,21 @@
-public class UserController
+using ChatBot.Dtos;
+using ChatBot.Managers.Abstract;
+using Microsoft.AspNetCore.Mvc;
+
+[ApiController]
+[Route("[controller]")]
+public class UserController:ControllerBase
 {
-    private readonly IUserRepository _userrepo;
+    private readonly IUserManager _userManager;
     
-    public UserController(IUserRepository repository)
+    public UserController(IUserManager repository)
     {
-        _userrepo = repository;
+        _userManager = repository;
     }
-    public async Task<List<UserEntity>> Get() =>
-             this._userrepo.Get();
 
-    public async Task<UserEntity> Get(string id) =>
-       this._userrepo.Get(u => u.Id == id);
+    [HttpGet(Name ="GetUserByEmail")]
+    public async Task<UserDto> GetUserByEmail(string email) {
+        return await this._userManager.GetUserByEmail(email);
+    }
 
-    public async Task Create(UserEntity user) =>
-        this._userrepo.AddAsync(user);
-
-    public async Task Update(string id, UserEntity user) =>
-        this._userrepo.UpdateAsync(id, user);
-
-    public async Task Remove(string id) =>
-        this._userrepo.DeleteAsync(id);
 }

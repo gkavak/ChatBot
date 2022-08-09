@@ -1,4 +1,11 @@
 
+using ChatBot.Common.DataAccess;
+using ChatBot.DataLayer.Abstract;
+using ChatBot.DataLayer.Concrete;
+using ChatBot.Managers.Abstract;
+using ChatBot.Managers.Concrete;
+using ChatBot.Managers.Mapper;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,6 +17,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(MapperProfiles));
+builder.Services.AddSingleton<IUserManager, UserManager>();
+builder.Services.AddSingleton<IUserDAL, UserDAL>();
 
 var app = builder.Build();
 
@@ -22,24 +32,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllers();
 
-//endpoints
-/*
-app.MapGet("/", () => "User API!");
-
-app.MapGet("/api/get_all_users", );
-
-
-app.MapGet("/api/find_user",);
-
-app.MapPost("/api/add_user",);
-
-app.MapPost("/api/delete_user",);
-
-app.MapPost("/api/update_user",);
-*/
 
 app.Run();

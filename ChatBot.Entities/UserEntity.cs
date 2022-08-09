@@ -1,7 +1,10 @@
+using ChatBot.Common.DataAccess;
+using ChatBot.Common.Entities;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-namespace ChatBot.Common.Entities
+namespace ChatBot.Enitities
 {
+    [BsonCollection("User")]
     public class UserEntity : MongoDbEntity 
     { 
         [BsonElement("name")]
