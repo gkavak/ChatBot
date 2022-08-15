@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ChatBot.Dtos;
+using ChatBot.Managers.Types.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,20 +30,16 @@ namespace ChatBot.Managers.Utils.Resolvers
 
         private Dictionary<string, string> createMenuMap(string path)
         {
-            if (path == null)
-            {
-                Console.WriteLine("Set menu id mappings file path first!");
-                return new NotImplementedException();
-            }
-            else
-            {
                 throw new NotImplementedException();
-            }
         }
         public List<string> GetQuestionListByMenuId(string menuId)
         {
 
             return _menus[menuId].Split(",").ToList();
+        }
+        public ChatBotResponseDTO Resolve(Menu menu)
+        {
+            throw new NotImplementedException();
         }
     }
 }

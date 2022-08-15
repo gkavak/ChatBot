@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace ChatBot.DataLayer.Concrete
 {
-    public class ChatBotQuestionDAL : MongoDbRepositoryBase<ChatBotQuestionEntity>, IChatBotQuestionDAL
+    public class ChatBotQuestionDAL : MsSQLDbRepositoryBase<ChatBotQuestionEntity>, IChatBotQuestionDAL
     {
-        public ChatBotQuestionDAL(IOptions<MongoDbSettings> options) : base(options)
+        public ChatBotQuestionDAL(IOptions<MsSQLDbSettings> options) : base(options)
         {
 
         }
