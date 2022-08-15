@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ChatBot.Entities
 {
-    public class ChatBotQuestionEntity:MongoDbEntity
+    public class ChatBotQuestionEntity:MsSQLDbEntity
     {
 
         [BsonElement("question_type")]

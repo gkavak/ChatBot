@@ -5,6 +5,7 @@ using ChatBot.DataLayer.Concrete;
 using ChatBot.Managers.Abstract;
 using ChatBot.Managers.Concrete;
 using ChatBot.Managers.Mapper;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 //Mongo db connection
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDbSettings"));
-
+builder.Services.Configure<MsSQLDbSettings>(builder.Configuration.GetSection("MS-SQLSettings"));
+builder.Services.AddSingleton<DbContext, MsSQLDbContext>();//??
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

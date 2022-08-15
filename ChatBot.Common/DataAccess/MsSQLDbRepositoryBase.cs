@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ChatBot.Common.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace ChatBot.Common.DataAccess
 {
-    public class MsSQLDbRepositoryBase<T> : IRepository<T, string> where T : DbContext, new()
+    public class MsSQLDbRepositoryBase<T> : IRepository<T, string> where T : MsSQLDbEntity, new()
     {
-        private readonly MsSQLDbSettings settings;
+        
         private readonly DbContext _dbContext;
-        protected MsSQLDbRepositoryBase(IOptions<MsSQLDbSettings> options)
+        protected MsSQLDbRepositoryBase(DbContext dbcontext)
         {
-            
+            _dbContext = dbcontext;
         }
 
         public IQueryable<T> AsQueryable()
