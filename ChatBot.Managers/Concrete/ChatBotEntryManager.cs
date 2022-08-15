@@ -13,11 +13,11 @@ namespace ChatBot.Managers.Concrete
 {
     public class ChatBotEntryManager : IChatBotEntryManager
     {
-        private readonly IChatBotEntryDAL _chatBotDal;
+        private readonly IChatBotEntryDAL _chatBotEntryDal;
         private readonly IMapper _mapper;
         public ChatBotEntryManager(IChatBotEntryDAL chatBotDal, IMapper mapper)
         {
-            _chatBotDal = chatBotDal;
+            _chatBotEntryDal = chatBotDal;
             _mapper = mapper;
         }
 
