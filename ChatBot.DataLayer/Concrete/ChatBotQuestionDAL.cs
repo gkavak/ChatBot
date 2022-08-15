@@ -5,16 +5,18 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ChatBot.DataLayer.Concrete
 {
-    public class ChatBotEntryDAL : MongoDbRepositoryBase<ChatBotEntryEntity>, IChatBotEntryDAL
+    public class ChatBotQuestionDAL : MongoDbRepositoryBase<ChatBotQuestionEntity>, IChatBotQuestionDAL
     {
-        public ChatBotEntryDAL(IOptions<MongoDbSettings> options) : base(options)
+        public ChatBotQuestionDAL(IOptions<MongoDbSettings> options) : base(options)
         {
 
         }
+
     }
 }

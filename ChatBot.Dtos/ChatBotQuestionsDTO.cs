@@ -7,8 +7,13 @@ using System.Threading.Tasks;
 
 namespace ChatBot.Dtos
 {
-    public class ChatBotRespondsDTO:DtoAbstract
+    public class ChatBotQuestionsDTO:DtoAbstract
     {
-        public string Answer { get; set; }
+
+        
+        public string NextMenuID { get; set; }
+
+        
+        public string Body { get; set; }
     }
 }

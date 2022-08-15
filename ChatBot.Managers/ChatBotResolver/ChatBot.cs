@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChatBot.Managers.Abstract
+namespace ChatBot.Managers.ChatBotResolver
 {
-    internal interface IChatBotManager
+    internal class ChatBot
     {
     }
 }

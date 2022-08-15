@@ -8,9 +8,9 @@ public class UserController:ControllerBase
 {
     private readonly IUserManager _userManager;
     
-    public UserController(IUserManager repository)
+    public UserController(IUserManager userManager)
     {
-        _userManager = repository;
+        _userManager = userManager;
     }
 
     [HttpGet(Name ="GetUserByEmail")]

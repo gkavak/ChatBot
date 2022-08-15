@@ -18,6 +18,11 @@
 
   <ItemGroup>
     <None Remove="..\.dockerignore" />
+    <None Remove="utils\script.csx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="utils\script.csx" />
   </ItemGroup>
 
 </Project>
