@@ -18,7 +18,7 @@ namespace ChatBot.DataLayer.Concrete
 
         public async Task<UserEntity> GetUserByEmail(string email)
         {
-            return FilterBy(x => x.Email == email).FirstOrDefault();
+            return await base.FindOneAsync(user => user.Email == email);
         }
 
          

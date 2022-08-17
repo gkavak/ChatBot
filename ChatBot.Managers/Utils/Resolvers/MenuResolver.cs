@@ -16,7 +16,7 @@ namespace ChatBot.Managers.Utils.Resolvers
     {
         private static MenuResolver _instance;
         private Dictionary<string, string> _menus;
-        private string mapFilePath ="menu_maps.txt";
+        private string mapFilePath ="../ChatBot.Managers/Utils/Resolvers/menu_maps.txt";
 
         private MenuResolver()
         {
@@ -55,7 +55,7 @@ namespace ChatBot.Managers.Utils.Resolvers
             //use questionDAL to get next menu id
             string questionId = menu.GetDetails()["selected_question_id"];
             var question = mapper.Map<ChatBotQuestionsDTO>(await questionDal.FindByIdAsync(questionId));
-            string next_menu_id = question.NextMenuId;
+            string next_menu_id = question.NextMenuId.ToString();
 
            
             //get question ids included in the menu
@@ -63,11 +63,18 @@ namespace ChatBot.Managers.Utils.Resolvers
             
             //create new menu
             List<ChatBotQuestionsDTO> questions = new List<ChatBotQuestionsDTO>();
-            question_ids.Select(async qid => questions.Add(mapper.Map<ChatBotQuestionsDTO>(await questionDal.FindByIdAsync(qid))));
+            //question_ids.Select(async qid => questions.Add(mapper.Map<ChatBotQuestionsDTO>(await questionDal.FindByIdAsync(qid))));
+            foreach(string qid in question_ids)
+            {
+                var qst = await questionDal.FindByIdAsync(qid);
+                var qstDto = mapper.Map<ChatBotQuestionsDTO>(qst);
+                questions.Add(qstDto);  
 
-
+            }
+            var temp = new ChatBotResponse(questions, questions.Select(q => q.NextMenuId == null).Any() ? "question" : "menu");
+            var tempDto = mapper.Map<ChatBotResponseDTO>(temp);
             //retrun new menu
-            return mapper.Map<ChatBotResponseDTO>(new ChatBotResponse(questions, questions.Select(q=>q.NextMenuId ==null).Any() ? "question":"menu"));
+            return tempDto;
 
         }
     }

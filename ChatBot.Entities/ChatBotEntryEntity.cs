@@ -1,4 +1,5 @@
-﻿using ChatBot.Common.Entities;
+﻿using ChatBot.Common.DataAccess;
+using ChatBot.Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ChatBot.Entities
 {
+    [BsonCollection("ChatBotEntry")]
     public class ChatBotEntryEntity: MongoDbEntity
     {
         public string userID { get; set; }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ChatBot.Common.Entities
 {
-    public class MsSQLDbEntity : IEntity<string>
+    public class MsSQLDbEntity : IEntity<int>
     {
-        public string Id => throw new NotImplementedException();
+        public int Id { get; set; }
 
-        public DateTime CreatedAt { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public DateTime ModifiedAt { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public DateTime CreatedAt { get; set; }
+        public DateTime ModifiedAt { get; set; }
     }
 }

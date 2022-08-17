@@ -2,6 +2,7 @@
 using ChatBot.Dtos;
 using ChatBot.Enitities;
 using ChatBot.Entities;
+using ChatBot.Managers.Utils.Types.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,12 @@ namespace ChatBot.Managers.Mapper
             this.CreateMap<ChatBotEntryDTO, ChatBotEntryEntity>();
             this.CreateMap<ChatBotQuestionEntity, ChatBotQuestionsDTO>();
             this.CreateMap<ChatBotQuestionsDTO, ChatBotQuestionEntity>();
+
+            this.CreateMap<ChatBotResponse, ChatBotResponseDTO>()
+                .ForMember(dto => dto.answer, act => act.MapFrom(nonDto => nonDto._answer))
+                .ForMember(dto => dto.questions, act => act.MapFrom(nonDto => nonDto._questions))
+                .ForMember(dto => dto.type, act => act.MapFrom(nonDto => nonDto._type));
+    
         }
     }
 }

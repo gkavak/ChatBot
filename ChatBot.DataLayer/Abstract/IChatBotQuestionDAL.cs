@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ChatBot.DataLayer.Abstract
 {
-    public interface IChatBotQuestionDAL:IRepository<ChatBotQuestionEntity, string>
+    public interface IChatBotQuestionDAL:IRepository<ChatBotQuestionEntity, int>
     {
         
     }

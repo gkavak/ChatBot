@@ -11,7 +11,7 @@ namespace ChatBot.Entities
     public class ChatBotQuestionEntity:MsSQLDbEntity
     {
 
-        public string NextMenuId { get; set; }
+        public int NextMenuId { get; set; }
 
         public string Body { get; set; }
     }

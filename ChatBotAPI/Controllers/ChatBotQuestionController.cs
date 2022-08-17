@@ -16,7 +16,7 @@ public class ChatBotQuestionController:ControllerBase
     [HttpGet(Name ="GetQuestion")]
     public Task<ChatBotQuestionsDTO> GetQuestion(string questionID)
     {
-        throw new NotImplementedException();
+        return _chatBotQuestionManager.GetQuestion(questionID);
     }
 
 }

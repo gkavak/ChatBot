@@ -4,7 +4,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 namespace ChatBot.Enitities
 {
-    [BsonCollection("User")]
+    [BsonCollection("Users")]
     public class UserEntity : MongoDbEntity 
     { 
         [BsonElement("name")]
@@ -21,6 +21,12 @@ namespace ChatBot.Enitities
 
         [BsonElement("password")]
         public string Password { get; set; }
+
+        [BsonElement("created_at")]
+        public string CreatedAt { get; set; }
+
+        [BsonElement("modified_at")]
+        public string ModifiedAt { get; set; }
     }
 }
 

@@ -20,9 +20,12 @@ namespace ChatBot.Managers.Concrete
             _mapper = mapper;
             
         }
-        public Task<ChatBotQuestionsDTO> GetQuestion(string questionID)
+        public async Task<ChatBotQuestionsDTO> GetQuestion(string questionID)
         {
-            throw new NotImplementedException();
+            var question = await _questionDAL.FindByIdAsync(questionID);
+            var questionDto = _mapper.Map<ChatBotQuestionsDTO>(question);
+            
+            return questionDto;
         }
     }
 }

@@ -55,7 +55,7 @@ namespace ChatBot.Common.DataAccess
 
         public virtual Task<T> FindOneAsync(Expression<Func<T, bool>> filterExpression)
         {
-            return Task.Run(() => _collection.Find(filterExpression).FirstOrDefaultAsync());
+            return _collection.Find(filterExpression).FirstOrDefaultAsync();
         }
 
         public virtual T FindById(string id)

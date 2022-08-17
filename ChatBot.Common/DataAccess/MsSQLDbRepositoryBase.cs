@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ChatBot.Common.DataAccess
 {
-    public class MsSQLDbRepositoryBase<T> : IRepository<T, string> where T : MsSQLDbEntity, new()
+    public class MsSQLDbRepositoryBase<T> : IRepository<T, int> where T : MsSQLDbEntity, new()
     {
         
         private readonly DbContext _dbContext;
@@ -71,7 +71,7 @@ namespace ChatBot.Common.DataAccess
 
         public Task<T> FindByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            return _dbContext.Set<T>().FirstOrDefaultAsync(ques=> ques.Id.ToString() == id);
         }
 
         public T FindOne(Expression<Func<T, bool>> filterExpression)

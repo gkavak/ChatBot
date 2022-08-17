@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ChatBot.Common.DataAccess;
+using ChatBot.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -6,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChatBot.Common.DataAccess
+namespace ChatBot.DataLayer.Concrete
 {
     public class MsSQLDbContext: DbContext
     {
@@ -19,7 +21,7 @@ namespace ChatBot.Common.DataAccess
         {
             optionsBuilder.UseSqlServer(this._options.ConnectionString);
         }
-        
-        
+
+        public DbSet<ChatBotQuestionEntity> Questions { get; set; }
     }
 }
