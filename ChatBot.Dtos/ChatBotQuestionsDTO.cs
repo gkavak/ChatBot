@@ -11,9 +11,8 @@ namespace ChatBot.Dtos
     {
 
         
-        public string NextMenuID { get; set; }
+        public string NextMenuId { get; set; }
 
-        
         public string Body { get; set; }
     }
 }

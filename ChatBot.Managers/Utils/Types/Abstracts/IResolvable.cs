@@ -1,4 +1,6 @@
-﻿using ChatBot.Dtos;
+﻿using AutoMapper;
+using ChatBot.DataLayer.Abstract;
+using ChatBot.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,6 @@ namespace ChatBot.Managers.Types.Abstracts
 {
     public interface IResolvable
     {
-        ChatBotResponseDTO Resolve();
+        Task<ChatBotResponseDTO> Resolve(IChatBotQuestionDAL questionDal, IMapper mapper);
     }
 }

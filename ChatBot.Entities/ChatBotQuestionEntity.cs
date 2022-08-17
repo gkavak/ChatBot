@@ -11,10 +11,8 @@ namespace ChatBot.Entities
     public class ChatBotQuestionEntity:MsSQLDbEntity
     {
 
-        [BsonElement("question_type")]
-        public string QuestionType { get; set; }
+        public string NextMenuId { get; set; }
 
-        [BsonElement("body")]
         public string Body { get; set; }
     }
 }

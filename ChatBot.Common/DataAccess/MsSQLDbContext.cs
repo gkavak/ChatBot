@@ -19,5 +19,7 @@ namespace ChatBot.Common.DataAccess
         {
             optionsBuilder.UseSqlServer(this._options.ConnectionString);
         }
+        
+        
     }
 }

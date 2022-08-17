@@ -18,6 +18,7 @@ namespace ChatBot.DataLayer.Concrete
         {
 
         }
+        public DbSet<ChatBotQuestionEntity> Questions { get; set; }
 
     }
 }

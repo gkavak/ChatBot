@@ -29,7 +29,7 @@ namespace ChatBot.Managers.Concrete
             //add chatbot entry
 
             // resolve
-            return menu_or_question.Resolve();
+            return await menu_or_question.Resolve(_questionDAL,_mapper);
 
         }
     }

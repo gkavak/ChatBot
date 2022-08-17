@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChatBot.Managers.Abstract
 {
-    internal interface IChatBotManager
+    public interface IChatBotManager
     {
     }
 }
