@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 [Route("[controller]")]
 public class ChatBotController : ControllerBase
 {
-    private readonly ChatBotManager _chatBotManager;
+    private readonly IChatBotManager _chatBotManager;
    
 
     public ChatBotController(IChatBotManager chatBotManager)

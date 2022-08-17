@@ -4,6 +4,7 @@ using ChatBot.Dtos;
 using ChatBot.Managers.Abstract;
 
 using ChatBot.Managers.Types.Abstracts;
+using ChatBot.Managers.Utils.JsonParser;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,10 @@ namespace ChatBot.Managers.Concrete
             // resolve
             return await menu_or_question.Resolve(_questionDAL,_mapper);
 
+        }
+        public async Task<ChatBotResponseDTO> AskQuestion(string userAnswers)
+        {
+            return await AskQuestion(JsonParser.ParseJSONToMenuOrQuestion(userAnswers));
         }
     }
 }
