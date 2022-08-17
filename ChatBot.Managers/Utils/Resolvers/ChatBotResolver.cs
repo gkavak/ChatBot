@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChatBot.Managers.ChatBotResolver
+namespace ChatBot.Managers.Utils.Resolvers
 {
-    internal class ChatBot
+    public class ChatBotResolver
     {
+
     }
 }

@@ -34,7 +34,6 @@ namespace ChatBot.Managers.Utils.Resolvers
         }
         public List<string> GetQuestionListByMenuId(string menuId)
         {
-
             return _menus[menuId].Split(",").ToList();
         }
         public ChatBotResponseDTO Resolve(Menu menu)
