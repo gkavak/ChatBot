@@ -10,7 +10,7 @@ namespace ChatBot.Dtos
     public class ChatBotQuestionsDTO:DtoAbstract
     {
         public int Id { get; set; }
-        public int NextMenuId { get; set; }
+        public string NextMenuId { get; set; }
 
         public string Body { get; set; }
     }

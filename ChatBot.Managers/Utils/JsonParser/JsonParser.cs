@@ -20,7 +20,7 @@ namespace ChatBot.Managers.Utils.JsonParser
             Dictionary<string,string> otherDetails = jObject.ToObject<Dictionary<string, string>>();
             if ((string)jObject["type"] == "question")
             {
-                return new Question((string)jObject["id"], otherDetails);
+                return new Question((string)jObject["selected_question_id"], otherDetails);
 
             }else if((string)jObject["type"] == "menu")
             {

@@ -17,7 +17,8 @@ namespace ChatBot.Managers.Utils.Resolvers
         private static QuestionResolver _instance;
         private QuestionResolver()
         {
-            CreateAnswers(question_answers_by_id);
+            question_answers_by_id = new Dictionary<string, string>();
+            question_answers_by_id = CreateAnswers();
         }
         public static QuestionResolver GetInstance()
         {
@@ -27,12 +28,14 @@ namespace ChatBot.Managers.Utils.Resolvers
             }
             return _instance;
         }
-        private void CreateAnswers(Dictionary<string, string> answer_map)
+        private Dictionary<string, string> CreateAnswers()
         {
+            Dictionary<string, string> answer_map = new Dictionary<string, string>();
             for (int i = 13; i <= 21; i++)
             {
                 answer_map.Add(i.ToString(), $"Simple Question {i - 12} Answer");
             }
+            return answer_map;
         }
         public ChatBotResponseDTO Resolve(Question question, IChatBotQuestionDAL questionDal, IMapper mapper)
         {
@@ -41,5 +44,7 @@ namespace ChatBot.Managers.Utils.Resolvers
             return mapper.Map<ChatBotResponseDTO>(new ChatBotResponse( null,type = type, answer = answer));
             
         }
+
+        
     }
 }

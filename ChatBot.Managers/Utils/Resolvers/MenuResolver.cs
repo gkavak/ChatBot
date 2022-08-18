@@ -55,7 +55,7 @@ namespace ChatBot.Managers.Utils.Resolvers
             //use questionDAL to get next menu id
             string questionId = menu.GetDetails()["selected_question_id"];
             //if its first request return main menu 
-            string next_menu_id = questionId == "-1" ? "0":mapper.Map<ChatBotQuestionsDTO>(await questionDal.FindByIdAsync(questionId)).NextMenuId.ToString();
+            string next_menu_id = questionId == "-1" ? "0":mapper.Map<ChatBotQuestionsDTO>(await questionDal.FindByIdAsync(questionId)).NextMenuId;
 
            
             //get question ids included in the menu
