@@ -71,7 +71,7 @@ namespace ChatBot.Common.DataAccess
 
         public Task<T> FindByIdAsync(string id)
         {
-            return _dbContext.Set<T>().FirstOrDefaultAsync(ques=> ques.Id.ToString() == id);
+            return _dbContext.Set<T>().FirstOrDefaultAsync(ques => ques.Id.ToString() == id);
         }
 
         public T FindOne(Expression<Func<T, bool>> filterExpression)

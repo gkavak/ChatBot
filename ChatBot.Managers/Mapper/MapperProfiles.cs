@@ -25,8 +25,9 @@ namespace ChatBot.Managers.Mapper
             this.CreateMap<ChatBotResponse, ChatBotResponseDTO>()
                 .ForMember(dto => dto.answer, act => act.MapFrom(nonDto => nonDto._answer))
                 .ForMember(dto => dto.questions, act => act.MapFrom(nonDto => nonDto._questions))
-                .ForMember(dto => dto.type, act => act.MapFrom(nonDto => nonDto._type));
-    
+                .ForMember(dto => dto.type, act => act.MapFrom(nonDto => nonDto._type))
+                .ForMember(dto => dto.Id, act => act.MapFrom(nonDto => nonDto._Id));
+
         }
     }
 }

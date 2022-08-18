@@ -12,6 +12,7 @@ namespace ChatBot.Dtos
 
         public List<ChatBotQuestionsDTO> questions { get; set; }
 
+        public string Id { get; set; }
         public string answer { get; set; }
     }
 }

@@ -54,8 +54,8 @@ namespace ChatBot.Managers.Utils.Resolvers
         {
             //use questionDAL to get next menu id
             string questionId = menu.GetDetails()["selected_question_id"];
-            var question = mapper.Map<ChatBotQuestionsDTO>(await questionDal.FindByIdAsync(questionId));
-            string next_menu_id = question.NextMenuId.ToString();
+            //if its first request return main menu 
+            string next_menu_id = questionId == "-1" ? "0":mapper.Map<ChatBotQuestionsDTO>(await questionDal.FindByIdAsync(questionId)).NextMenuId.ToString();
 
            
             //get question ids included in the menu
@@ -71,7 +71,9 @@ namespace ChatBot.Managers.Utils.Resolvers
                 questions.Add(qstDto);  
 
             }
-            var temp = new ChatBotResponse(questions, questions.Select(q => q.NextMenuId == null).Any() ? "question" : "menu");
+            var test = questions.Where(q => q.NextMenuId == null);
+            bool test2 = test.Any();
+            var temp = new ChatBotResponse(questions, type:test2 ? "question" : "menu",id: next_menu_id);
             var tempDto = mapper.Map<ChatBotResponseDTO>(temp);
             //retrun new menu
             return tempDto;
