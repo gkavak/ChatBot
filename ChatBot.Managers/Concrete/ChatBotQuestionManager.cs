@@ -5,6 +5,7 @@ using ChatBot.Common.Utils.Results.ConcreteBase;
 using ChatBot.DataLayer.Abstract;
 using ChatBot.Dtos;
 using ChatBot.Managers.Abstract;
+using ChatBot.Managers.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +30,9 @@ namespace ChatBot.Managers.Concrete
             if(question != null)
             {
                 var questionDto = _mapper.Map<ChatBotQuestionsDTO>(question);
-                return new SuccessDataResult<ChatBotQuestionsDTO>(data: questionDto, message: "Question found!");
+                return new SuccessDataResult<ChatBotQuestionsDTO>(data: questionDto, message: MessageTexts.QuestionFound);
             }
-            return new FailureDataResult<ChatBotQuestionsDTO>(message: "Question could not be found!");
+            return new FailureDataResult<ChatBotQuestionsDTO>(message: MessageTexts.QuestionNotFound);
            
         }
 

@@ -20,7 +20,11 @@ namespace ChatBot.DataLayer.Concrete
         {
             return await base.FindOneAsync(user => user.Email == email);
         }
+        public override Task InsertOneAsync(UserEntity user)
+        {
+            return base.InsertOneAsync(user);
+        }
 
-         
+
     }
 }

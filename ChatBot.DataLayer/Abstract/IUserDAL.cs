@@ -13,6 +13,6 @@ namespace ChatBot.DataLayer.Abstract
     public interface IUserDAL:IRepository<UserEntity,string>
     {
         Task<UserEntity> GetUserByEmail(string email);
-        
+        Task InsertOneAsync(UserEntity user);
     }
 }

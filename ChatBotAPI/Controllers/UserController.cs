@@ -18,5 +18,9 @@ public class UserController:ControllerBase
     public async Task<IDataResult<UserDto>> GetUserByEmail(string email) {
         return await this._userManager.GetUserByEmail(email);
     }
-
+    [HttpPost(Name = "AddUser")]
+    public async Task<ChatBot.Common.Utils.Results.Abstract.IResult> AddUser(UserDto user)
+    {
+        return await this._userManager.AddUserAsync(user);
+    }
 }
