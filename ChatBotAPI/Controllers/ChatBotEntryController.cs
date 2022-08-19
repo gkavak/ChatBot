@@ -1,3 +1,4 @@
+using ChatBot.Common.Utils.Results.Abstract;
 using ChatBot.Dtos;
 using ChatBot.Managers.Abstract;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +15,7 @@ public class ChatBotEntryController:ControllerBase
     }
 
     [HttpGet(Name ="GetEntryById")]
-    public Task<ChatBotEntryDTO> GetEntryByI(string entryID)
+    public Task<IDataResult<ChatBotEntryDTO>> GetEntryById(string entryID)
     {
         throw new NotImplementedException();
     }

@@ -1,4 +1,5 @@
-﻿using ChatBot.Dtos;
+﻿using ChatBot.Common.Utils.Results.Abstract;
+using ChatBot.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace ChatBot.Managers.Abstract
 {
     public interface IChatBotQuestionManager
     {
-        Task<ChatBotQuestionsDTO> GetQuestion(string questionID);
+        Task<IDataResult<ChatBotQuestionsDTO>> GetQuestion(string questionID);
     }
 }

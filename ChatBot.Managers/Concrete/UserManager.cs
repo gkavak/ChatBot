@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ChatBot.Common.Utils.Results.Abstract;
+using ChatBot.Common.Utils.Results.Concrete;
 using ChatBot.DataLayer.Abstract;
 using ChatBot.Dtos;
 using ChatBot.Managers.Abstract;
@@ -19,14 +21,18 @@ namespace ChatBot.Managers.Concrete
             _userDAL = userDAL;
             _mapper = mapper;
         }
-        public async Task<UserDto> GetUserByEmail(string email)
+        public async Task<IDataResult<UserDto>> GetUserByEmail(string email)
         {
-            var user = await _userDAL.GetUserByEmail(email);
-            var dtoUser = _mapper.Map<UserDto>(user);
-            return dtoUser;
+            var user =  await _userDAL.GetUserByEmail(email);
+            if (user != null)
+            {
+                var dtoUser = _mapper.Map<UserDto>(user);
+                return new SuccessDataResult<UserDto>(data: dtoUser, message: "User Found");
+            }
+            return new FailureDataResult<UserDto>(message: "User could not be Found");
         }
 
-        public Task<UserDto> GetUserByPhoneNumber(string phoneNumber)
+        public async Task<IDataResult<UserDto>> GetUserByPhoneNumber(string phoneNumber)
         {
             throw new NotImplementedException();
         }

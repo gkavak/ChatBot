@@ -1,3 +1,4 @@
+using ChatBot.Common.Utils.Results.Abstract;
 using ChatBot.Dtos;
 using ChatBot.Managers.Abstract;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +15,7 @@ public class UserController:ControllerBase
     }
 
     [HttpGet(Name ="GetUserByEmail")]
-    public async Task<UserDto> GetUserByEmail(string email) {
+    public async Task<IDataResult<UserDto>> GetUserByEmail(string email) {
         return await this._userManager.GetUserByEmail(email);
     }
 

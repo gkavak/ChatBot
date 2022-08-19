@@ -1,4 +1,6 @@
-﻿using ChatBot.Dtos;
+﻿using ChatBot.Common.Utils.Results.Abstract;
+
+using ChatBot.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ namespace ChatBot.Managers.Abstract
 {
     public interface IChatBotEntryManager
     {
-        Task<ChatBotEntryDTO> GetEntryById(string entryID);
-        void AddEntry(ChatBotEntryDTO entry);
+        Task<IDataResult<ChatBotEntryDTO>> GetEntryById(string entryID);
+        Task<IResult> AddEntry(ChatBotEntryDTO entry);
     }
 }

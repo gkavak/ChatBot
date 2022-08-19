@@ -1,4 +1,5 @@
-﻿using ChatBot.Dtos;
+﻿using ChatBot.Common.Utils.Results.Abstract;
+using ChatBot.Dtos;
 using ChatBot.Managers.Abstract;
 using ChatBot.Managers.Concrete;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +19,7 @@ public class ChatBotController : ControllerBase
 
 
     [HttpGet(Name = "AskQuestion")]
-    public async Task<ChatBotResponseDTO> AskQuestion(string useranswer)
+    public async Task<IDataResult<ChatBotResponseDTO>> AskQuestion(string useranswer)
     {
         //save the user answers,check the user answers
        return await _chatBotManager.AskQuestion(useranswer);

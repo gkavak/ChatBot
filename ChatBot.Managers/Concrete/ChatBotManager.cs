@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ChatBot.Common.Utils.Results.Abstract;
+using ChatBot.Common.Utils.Results.Concrete;
 using ChatBot.DataLayer.Abstract;
 using ChatBot.Dtos;
 using ChatBot.Managers.Abstract;
@@ -33,9 +35,14 @@ namespace ChatBot.Managers.Concrete
             return await menu_or_question.Resolve(_questionDAL,_mapper);
 
         }
-        public async Task<ChatBotResponseDTO> AskQuestion(string userAnswers)
+        public async Task<IDataResult<ChatBotResponseDTO>> AskQuestion(string userAnswers)
         {
-            return await AskQuestion(JsonParser.ParseJSONToMenuOrQuestion(userAnswers));
+            var result = await AskQuestion(JsonParser.ParseJSONToMenuOrQuestion(userAnswers));
+            if (result != null)
+                return new SuccessDataResult<ChatBotResponseDTO>(data: result);
+            else
+                return new FailureDataResult<ChatBotResponseDTO>(message:"Could not find questions");
+            
         }
     }
 }

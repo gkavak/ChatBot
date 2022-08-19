@@ -1,4 +1,5 @@
-﻿using ChatBot.Dtos;
+﻿using ChatBot.Common.Utils.Results.Abstract;
+using ChatBot.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace ChatBot.Managers.Abstract
 {
     public interface IUserManager
     {
-        Task<UserDto> GetUserByEmail(string email);
-        Task<UserDto> GetUserByPhoneNumber(string phoneNumber);
+        Task<IDataResult<UserDto>> GetUserByEmail(string email);
+        Task<IDataResult<UserDto>> GetUserByPhoneNumber(string phoneNumber);
 
     }
 }

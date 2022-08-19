@@ -1,3 +1,4 @@
+using ChatBot.Common.Utils.Results.Abstract;
 using ChatBot.Dtos;
 using ChatBot.Managers.Abstract;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +15,7 @@ public class ChatBotQuestionController:ControllerBase
     }
 
     [HttpGet(Name ="GetQuestion")]
-    public Task<ChatBotQuestionsDTO> GetQuestion(string questionID)
+    public Task<IDataResult<ChatBotQuestionsDTO>> GetQuestion(string questionID)
     {
         return _chatBotQuestionManager.GetQuestion(questionID);
     }

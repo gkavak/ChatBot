@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using ChatBot.Common.Utils.Results.Abstract;
+using ChatBot.Common.Utils.Results.Concrete;
+using ChatBot.Common.Utils.Results.ConcreteBase;
 using ChatBot.DataLayer.Abstract;
 using ChatBot.Dtos;
 using ChatBot.Managers.Abstract;
@@ -20,12 +23,18 @@ namespace ChatBot.Managers.Concrete
             _mapper = mapper;
             
         }
-        public async Task<ChatBotQuestionsDTO> GetQuestion(string questionID)
+        public async Task<IDataResult<ChatBotQuestionsDTO>> GetQuestion(string questionID)
         {
-            var question = await _questionDAL.FindByIdAsync(questionID);
-            var questionDto = _mapper.Map<ChatBotQuestionsDTO>(question);
-            
-            return questionDto;
+            var question =  await _questionDAL.FindByIdAsync(questionID);
+            if(question != null)
+            {
+                var questionDto = _mapper.Map<ChatBotQuestionsDTO>(question);
+                return new SuccessDataResult<ChatBotQuestionsDTO>(data: questionDto, message: "Question found!");
+            }
+            return new FailureDataResult<ChatBotQuestionsDTO>(message: "Question could not be found!");
+           
         }
+
+      
     }
 }

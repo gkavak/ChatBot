@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ChatBot.Common.Utils.Results.Abstract;
 using ChatBot.DataLayer.Abstract;
 using ChatBot.DataLayer.Concrete;
 using ChatBot.Dtos;
@@ -21,12 +22,12 @@ namespace ChatBot.Managers.Concrete
             _mapper = mapper;
         }
 
-        public void AddEntry(ChatBotEntryDTO entry)
+        public Task<IResult> AddEntry(ChatBotEntryDTO entry)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ChatBotEntryDTO> GetEntryById(string entryID)
+        public Task<IDataResult<ChatBotEntryDTO>> GetEntryById(string entryID)
         {
             throw new NotImplementedException();
         }

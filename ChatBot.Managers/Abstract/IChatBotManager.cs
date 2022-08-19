@@ -1,4 +1,5 @@
-﻿using ChatBot.Dtos;
+﻿using ChatBot.Common.Utils.Results.Abstract;
+using ChatBot.Dtos;
 using ChatBot.Managers.Types.Abstracts;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,6 @@ namespace ChatBot.Managers.Abstract
     public interface IChatBotManager
     {
         Task<ChatBotResponseDTO> AskQuestion(IResolvable menu_or_question);
-        Task<ChatBotResponseDTO> AskQuestion(string useranswer);
+        Task<IDataResult<ChatBotResponseDTO>> AskQuestion(string useranswer);
     }
 }
