@@ -1,13 +1,23 @@
 
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using ChatBot.Common.DataAccess;
 using ChatBot.DataLayer.Abstract;
 using ChatBot.DataLayer.Concrete;
 using ChatBot.Managers.Abstract;
 using ChatBot.Managers.Concrete;
+using ChatBot.Managers.DependencyResolvers.Autofac;
 using ChatBot.Managers.Mapper;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
+{
+    builder.RegisterModule(new AutofacBusinessModule());
+});
+    
 
 // Add services to the container.
 
@@ -21,14 +31,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MapperProfiles));
-builder.Services.AddSingleton<IUserManager, UserManager>();
-builder.Services.AddSingleton<IUserDAL, UserDAL>();
-//
-builder.Services.AddSingleton<IChatBotQuestionManager, ChatBotQuestionManager>();
-builder.Services.AddSingleton<IChatBotQuestionDAL, ChatBotQuestionDAL>();
-builder.Services.AddSingleton<IChatBotEntryManager, ChatBotEntryManager>();
-builder.Services.AddSingleton<IChatBotEntryDAL, ChatBotEntryDAL>();
-builder.Services.AddSingleton<IChatBotManager, ChatBotManager>();
+//builder.Services.AddSingleton<IUserManager, UserManager>();
+//builder.Services.AddSingleton<IUserDAL, UserDAL>();
+////
+//builder.Services.AddSingleton<IChatBotQuestionManager, ChatBotQuestionManager>();
+//builder.Services.AddSingleton<IChatBotQuestionDAL, ChatBotQuestionDAL>();
+//builder.Services.AddSingleton<IChatBotEntryManager, ChatBotEntryManager>();
+//builder.Services.AddSingleton<IChatBotEntryDAL, ChatBotEntryDAL>();
+//builder.Services.AddSingleton<IChatBotManager, ChatBotManager>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
