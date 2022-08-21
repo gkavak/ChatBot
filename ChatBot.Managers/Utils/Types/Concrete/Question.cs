@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ChatBot.DataLayer.Abstract;
 using ChatBot.Dtos;
+using ChatBot.Managers.Abstract;
 using ChatBot.Managers.Types.Abstracts;
 using ChatBot.Managers.Utils.Resolvers;
 using System;
@@ -21,9 +22,9 @@ namespace ChatBot.Managers.Types.Concrete
             _details = details;
         }
 
-        public Task<ChatBotResponseDTO> Resolve(IChatBotQuestionDAL questionDal, IMapper mapper)
+        public Task<ChatBotResponseDTO> Resolve(IChatBotQuestionManager questionManager, IMapper mapper)
         {
-            return Task.FromResult(QuestionResolver.GetInstance().Resolve(this,questionDal,mapper));
+            return Task.FromResult(QuestionResolver.GetInstance().Resolve(this, questionManager, mapper));
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ChatBot.DataLayer.Abstract;
 using ChatBot.Dtos;
+using ChatBot.Managers.Abstract;
 using ChatBot.Managers.Types.Concrete;
 using ChatBot.Managers.Utils.Types.Concrete;
 using System;
@@ -37,7 +38,7 @@ namespace ChatBot.Managers.Utils.Resolvers
             }
             return answer_map;
         }
-        public ChatBotResponseDTO Resolve(Question question, IChatBotQuestionDAL questionDal, IMapper mapper)
+        public ChatBotResponseDTO Resolve(Question question, IChatBotQuestionManager questionManager, IMapper mapper)
         {
             string type = "answer";
             string answer = question_answers_by_id[question._question_id];

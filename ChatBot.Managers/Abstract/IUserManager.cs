@@ -12,7 +12,6 @@ namespace ChatBot.Managers.Abstract
     {
         Task<IDataResult<UserDto>> GetUserByEmail(string email);
         Task<IDataResult<UserDto>> GetUserByPhoneNumber(string phoneNumber);
-
         Task<IResult> AddUserAsync(UserDto user);
     }
 }

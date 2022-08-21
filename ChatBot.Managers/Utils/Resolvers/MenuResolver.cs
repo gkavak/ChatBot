@@ -2,6 +2,7 @@
 using ChatBot.DataLayer.Abstract;
 using ChatBot.Dtos;
 using ChatBot.Entities;
+using ChatBot.Managers.Abstract;
 using ChatBot.Managers.Types.Concrete;
 using ChatBot.Managers.Utils.Types.Concrete;
 using System;
@@ -50,12 +51,12 @@ namespace ChatBot.Managers.Utils.Resolvers
         {
             return _menus[menuId].Split(",").ToList();
         }
-        public async Task<ChatBotResponseDTO> Resolve(Menu menu, IChatBotQuestionDAL questionDal, IMapper mapper)
+        public async Task<ChatBotResponseDTO> Resolve(Menu menu, IChatBotQuestionManager questionManager, IMapper mapper)
         {
             //use questionDAL to get next menu id
             string questionId = menu.GetDetails()["selected_question_id"];
             //if its first request return main menu 
-            string next_menu_id = questionId == "-1" ? "0":mapper.Map<ChatBotQuestionsDTO>(await questionDal.FindByIdAsync(questionId)).NextMenuId;
+            string next_menu_id = questionId == "-1" ? "0":mapper.Map<ChatBotQuestionsDTO>(await questionManager.GetQuestion(questionId)).NextMenuId;
 
            
             //get question ids included in the menu
@@ -66,8 +67,8 @@ namespace ChatBot.Managers.Utils.Resolvers
             //question_ids.Select(async qid => questions.Add(mapper.Map<ChatBotQuestionsDTO>(await questionDal.FindByIdAsync(qid))));
             foreach(string qid in question_ids)
             {
-                var qst = await questionDal.FindByIdAsync(qid);
-                var qstDto = mapper.Map<ChatBotQuestionsDTO>(qst);
+                var qst = await questionManager.GetQuestion(qid);
+                var qstDto = mapper.Map<ChatBotQuestionsDTO>(qst.Data);
                 questions.Add(qstDto);  
 
             }
@@ -75,7 +76,7 @@ namespace ChatBot.Managers.Utils.Resolvers
             bool test2 = test.Any();
             var temp = new ChatBotResponse(questions, type:test2 ? "question" : "menu",id: next_menu_id);
             var tempDto = mapper.Map<ChatBotResponseDTO>(temp);
-            //retrun new menu
+            //return new menu
             return tempDto;
 
         }
