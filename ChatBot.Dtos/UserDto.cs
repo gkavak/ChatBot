@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChatBot.Dtos
 {
-    public class UserDto:DtoAbstract
+    public class UserDTO:DtoAbstract
     {
         public string Name { get; set; }
 

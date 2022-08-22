@@ -17,15 +17,15 @@ namespace ChatBot.Managers.Mapper
     {
         public MapperProfiles()
         {
-            this.CreateMap<UserEntity, UserDto>();
-            this.CreateMap<UserDto, UserEntity>();
+            this.CreateMap<UserEntity, UserDTO>();
+            this.CreateMap<UserDTO, UserEntity>();
             this.CreateMap<ChatBotEntryEntity, ChatBotEntryDTO>();
             this.CreateMap<ChatBotEntryDTO, ChatBotEntryEntity>();
             this.CreateMap<ChatBotQuestionEntity, ChatBotQuestionsDTO>();
             this.CreateMap<ChatBotQuestionsDTO, ChatBotQuestionEntity>();
             this.CreateMap<UserQuestionDTO, UserQuestion>();
 
-            this.CreateMap<UserRegisterDTO, UserDto>()
+            this.CreateMap<UserRegisterDTO, UserDTO>()
                 .ForMember(userDto => userDto.Password,act => act.MapFrom(uRegisterDto => Encoding.UTF8.GetBytes(uRegisterDto.Password)));
             
             this.CreateMap<ChatBotResponse, ChatBotResponseDTO>()

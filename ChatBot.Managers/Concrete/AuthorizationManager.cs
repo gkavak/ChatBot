@@ -26,11 +26,11 @@ namespace ChatBot.Managers.Concrete
             _mapper = mapper;
         }
 
-        public IDataResult<UserDto> Register(UserRegisterDTO userForRegisterDto, string password)
+        public IDataResult<UserDTO> Register(UserRegisterDTO userForRegisterDto, string password)
         {
             byte[] passwordHash;
             HashingHelper.CreatePasswordHash(password, out passwordHash);
-            var userDto = new UserDto
+            var userDto = new UserDTO
             {
                 Email = userForRegisterDto.Email,
                 Name = userForRegisterDto.Name,
@@ -38,23 +38,23 @@ namespace ChatBot.Managers.Concrete
                 sqlId = Int32.Parse(userForRegisterDto.sqlId)
             };
             _userManager.AddUserAsync(userDto);
-            return new SuccessDataResult<UserDto>(userDto, MessageTexts.RegisterSuccess);
+            return new SuccessDataResult<UserDTO>(userDto, MessageTexts.RegisterSuccess);
         }
 
-        public IDataResult<UserDto> Login(UserLoginDTO userForLoginDto)
+        public IDataResult<UserDTO> Login(UserLoginDTO userForLoginDto)
         {
             var userToCheck = _userManager.GetUserByEmail(userForLoginDto.Email).Result.Data;
             if (userToCheck == null)
             {
-                return new FailureDataResult<UserDto>(message:MessageTexts.UserNotFound);
+                return new FailureDataResult<UserDTO>(message:MessageTexts.UserNotFound);
             }
 
             if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.Password))
             {
-                return new FailureDataResult<UserDto>(message:MessageTexts.PasswordMissMatch);
+                return new FailureDataResult<UserDTO>(message:MessageTexts.PasswordMissMatch);
             }
 
-            return new SuccessDataResult<UserDto>(userToCheck, MessageTexts.LoginSuccess);
+            return new SuccessDataResult<UserDTO>(userToCheck, MessageTexts.LoginSuccess);
         }
 
         public IResult IsUserExists(string email)
@@ -67,7 +67,7 @@ namespace ChatBot.Managers.Concrete
             return new SuccessResult();
         }
 
-        public IDataResult<AccessToken> CreateAccessToken(UserDto user)
+        public IDataResult<AccessToken> CreateAccessToken(UserDTO user)
         {    
             var claims = _userManager.GetClaims(user);
             var accessToken = _tokenHelper.CreateToken(user, claims);

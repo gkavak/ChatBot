@@ -1,5 +1,5 @@
 ﻿using Castle.DynamicProxy;
-using ChatBot.Common.Utils.CrossCuttingConcerns;
+using ChatBot.Common.Utils.CrossCuttingConcerns.Validation;
 using ChatBot.Common.Utils.Interceptors;
 using FluentValidation;
 using System;

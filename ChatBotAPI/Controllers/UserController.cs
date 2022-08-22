@@ -15,11 +15,11 @@ public class UserController:ControllerBase
     }
 
     [HttpGet("GetUserByEmail")]
-    public async Task<IDataResult<UserDto>> GetUserByEmail(string email) {
+    public async Task<IDataResult<UserDTO>> GetUserByEmail(string email) {
         return await this._userManager.GetUserByEmail(email);
     }
     [HttpPost("AddUser")]
-    public async Task<ChatBot.Common.Utils.Results.Abstract.IResult> AddUser(UserDto user)
+    public async Task<ChatBot.Common.Utils.Results.Abstract.IResult> AddUser(UserDTO user)
     {
         return await this._userManager.AddUserAsync(user);
     }

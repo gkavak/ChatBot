@@ -25,7 +25,7 @@ namespace ChatBot.Common.Utils.Security.JWT
             _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
         }
-        public AccessToken CreateToken(UserDto user, List<OperationClaim> operationClaims)
+        public AccessToken CreateToken(UserDTO user, List<OperationClaim> operationClaims)
         {
             _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
             var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
@@ -42,7 +42,7 @@ namespace ChatBot.Common.Utils.Security.JWT
 
         }
 
-        public JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions, UserDto user,
+        public JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions, UserDTO user,
             SigningCredentials signingCredentials, List<OperationClaim> operationClaims)
         {
             var jwt = new JwtSecurityToken(
@@ -56,7 +56,7 @@ namespace ChatBot.Common.Utils.Security.JWT
             return jwt;
         }
 
-        private IEnumerable<Claim> SetClaims(UserDto user, List<OperationClaim> operationClaims)
+        private IEnumerable<Claim> SetClaims(UserDTO user, List<OperationClaim> operationClaims)
         {
             var claims = new List<Claim>();
             claims.AddNameIdentifier(user.sqlId.ToString());

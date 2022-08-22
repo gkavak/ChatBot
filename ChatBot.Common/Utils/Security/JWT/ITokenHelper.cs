@@ -10,6 +10,6 @@ namespace ChatBot.Common.Utils.Security.JWT
 {
     public interface ITokenHelper
     {
-        AccessToken CreateToken(UserDto user, List<OperationClaim> operationClaims);
+        AccessToken CreateToken(UserDTO user, List<OperationClaim> operationClaims);
     }
 }

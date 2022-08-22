@@ -28,7 +28,7 @@ namespace ChatBot.Managers.Concrete
         }
 
         [ValidationAspect(typeof(UserValidator))]
-        public async Task<IResult> AddUserAsync(UserDto user)
+        public async Task<IResult> AddUserAsync(UserDTO user)
         {  
             var userEnty = _mapper.Map<UserEntity>(user);
              await _userDAL.InsertOneAsync(userEnty);
@@ -43,19 +43,19 @@ namespace ChatBot.Managers.Concrete
 
         }
 
-        public async Task<IDataResult<UserDto>> GetUserByEmail(string email)
+        public async Task<IDataResult<UserDTO>> GetUserByEmail(string email)
         {
             var user =  await _userDAL.GetUserByEmail(email);
             if (user != null)
             {
-                var dtoUser = _mapper.Map<UserDto>(user);
-                return new SuccessDataResult<UserDto>(data: dtoUser, message: MessageTexts.UserFound);
+                var dtoUser = _mapper.Map<UserDTO>(user);
+                return new SuccessDataResult<UserDTO>(data: dtoUser, message: MessageTexts.UserFound);
             }
-            return new FailureDataResult<UserDto>(message:MessageTexts.UserNotFound);
+            return new FailureDataResult<UserDTO>(message:MessageTexts.UserNotFound);
         }
 
         
-        public List<OperationClaim> GetClaims(UserDto user)
+        public List<OperationClaim> GetClaims(UserDTO user)
         {
             var userEnt = _mapper.Map<UserEntity>(user);
             return _userDAL.GetClaims(userEnt);

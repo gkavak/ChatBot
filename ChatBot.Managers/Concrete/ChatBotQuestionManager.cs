@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ChatBot.Common.Aspects.Autofac.Caching;
 using ChatBot.Common.Utils.Results.Abstract;
 using ChatBot.Common.Utils.Results.Concrete;
 using ChatBot.Common.Utils.Results.ConcreteBase;
@@ -24,6 +25,7 @@ namespace ChatBot.Managers.Concrete
             _mapper = mapper;
             
         }
+        [CacheAspect]
         public async Task<IDataResult<ChatBotQuestionsDTO>> GetQuestion(string questionID)
         {
             var question =  await _questionDAL.FindByIdAsync(questionID);

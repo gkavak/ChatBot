@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ChatBot.Common.Aspects.Autofac.Caching;
 using ChatBot.Common.Utils.Results.Abstract;
 using ChatBot.Common.Utils.Results.Concrete;
 using ChatBot.DataLayer.Abstract;
@@ -32,6 +33,7 @@ namespace ChatBot.Managers.Concrete
 
         }
         [SecuredOperation("question.ask")]
+        
         public async Task<IDataResult<ChatBotResponseDTO>> AskQuestion(UserQuestionDTO userAnswers)
         {
             var question = _mapper.Map<UserQuestion>(userAnswers);

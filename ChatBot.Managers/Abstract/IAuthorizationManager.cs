@@ -12,9 +12,9 @@ namespace ChatBot.Managers.Abstract
 {
     public interface IAuthorizationManager
     {
-        IDataResult<UserDto> Register(UserRegisterDTO userForRegisterDto, string password);
-        IDataResult<UserDto> Login(UserLoginDTO userForLoginDto);
+        IDataResult<UserDTO> Register(UserRegisterDTO userForRegisterDto, string password);
+        IDataResult<UserDTO> Login(UserLoginDTO userForLoginDto);
         IResult IsUserExists(string email);
-        IDataResult<AccessToken> CreateAccessToken(UserDto user);
+        IDataResult<AccessToken> CreateAccessToken(UserDTO user);
     }
 }

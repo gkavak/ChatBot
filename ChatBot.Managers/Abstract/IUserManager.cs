@@ -6,8 +6,8 @@ namespace ChatBot.Managers.Abstract
 {
     public interface IUserManager
     {
-        Task<IDataResult<UserDto>> GetUserByEmail(string email);
-        Task<IResult> AddUserAsync(UserDto user);
-        List<OperationClaim> GetClaims(UserDto user);
+        Task<IDataResult<UserDTO>> GetUserByEmail(string email);
+        Task<IResult> AddUserAsync(UserDTO user);
+        List<OperationClaim> GetClaims(UserDTO user);
     }
 }
