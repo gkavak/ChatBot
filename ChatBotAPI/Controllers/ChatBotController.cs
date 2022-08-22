@@ -5,7 +5,7 @@ using ChatBot.Managers.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class ChatBotController : ControllerBase
 {
     private readonly IChatBotManager _chatBotManager;
@@ -18,8 +18,8 @@ public class ChatBotController : ControllerBase
 
 
 
-    [HttpGet(Name = "AskQuestion")]
-    public async Task<IDataResult<ChatBotResponseDTO>> AskQuestion(string useranswer)
+    [HttpGet("AskQuestion")]
+    public async Task<IDataResult<ChatBotResponseDTO>> AskQuestion(UserQuestionDTO useranswer)
     {
         //save the user answers,check the user answers
        return await _chatBotManager.AskQuestion(useranswer);

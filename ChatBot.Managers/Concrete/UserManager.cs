@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ChatBot.Common.Aspects.Autofac.Validation;
+using ChatBot.Common.Entities;
 using ChatBot.Common.Utils.Results.Abstract;
 using ChatBot.Common.Utils.Results.Concrete;
 using ChatBot.DataLayer.Abstract;
@@ -28,7 +29,7 @@ namespace ChatBot.Managers.Concrete
 
         [ValidationAspect(typeof(UserValidator))]
         public async Task<IResult> AddUserAsync(UserDto user)
-        {   
+        {  
             var userEnty = _mapper.Map<UserEntity>(user);
              await _userDAL.InsertOneAsync(userEnty);
 
@@ -48,16 +49,18 @@ namespace ChatBot.Managers.Concrete
             if (user != null)
             {
                 var dtoUser = _mapper.Map<UserDto>(user);
-                return new SuccessDataResult<UserDto>(data: dtoUser, message: MessageTexts.UserNotFound);
+                return new SuccessDataResult<UserDto>(data: dtoUser, message: MessageTexts.UserFound);
             }
             return new FailureDataResult<UserDto>(message:MessageTexts.UserNotFound);
         }
 
-        public async Task<IDataResult<UserDto>> GetUserByPhoneNumber(string phoneNumber)
+        
+        public List<OperationClaim> GetClaims(UserDto user)
         {
-            throw new NotImplementedException();
+            var userEnt = _mapper.Map<UserEntity>(user);
+            return _userDAL.GetClaims(userEnt);
         }
 
-         
+       
     }
 }

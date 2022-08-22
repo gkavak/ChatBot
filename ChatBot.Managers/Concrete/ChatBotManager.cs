@@ -4,14 +4,10 @@ using ChatBot.Common.Utils.Results.Concrete;
 using ChatBot.DataLayer.Abstract;
 using ChatBot.Dtos;
 using ChatBot.Managers.Abstract;
-
+using ChatBot.Managers.BusinessAspects.Autofac;
 using ChatBot.Managers.Types.Abstracts;
-using ChatBot.Managers.Utils.JsonParser;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ChatBot.Managers.Types.Concrete;
+
 
 namespace ChatBot.Managers.Concrete
 {
@@ -35,10 +31,12 @@ namespace ChatBot.Managers.Concrete
             return await menu_or_question.Resolve(_questionManager, _mapper);
 
         }
-        public async Task<IDataResult<ChatBotResponseDTO>> AskQuestion(string userAnswers)
+        [SecuredOperation("question.ask")]
+        public async Task<IDataResult<ChatBotResponseDTO>> AskQuestion(UserQuestionDTO userAnswers)
         {
-            //parse with AOP ?
-            var result = await AskQuestionParsed(JsonParser.ParseJSONToMenuOrQuestion(userAnswers));
+            var question = _mapper.Map<UserQuestion>(userAnswers);
+
+            var result = await AskQuestionParsed(question);
             if (result != null)
                 return new SuccessDataResult<ChatBotResponseDTO>(data: result);
             else

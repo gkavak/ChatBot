@@ -38,10 +38,10 @@ namespace ChatBot.Managers.Utils.Resolvers
             }
             return answer_map;
         }
-        public ChatBotResponseDTO Resolve(Question question, IChatBotQuestionManager questionManager, IMapper mapper)
+        public ChatBotResponseDTO Resolve(UserQuestion question, IChatBotQuestionManager questionManager, IMapper mapper)
         {
             string type = "answer";
-            string answer = question_answers_by_id[question._question_id];
+            string answer = question_answers_by_id[""+question.selectedQuestionId];
             return mapper.Map<ChatBotResponseDTO>(new ChatBotResponse( null,type = type, answer = answer));
             
         }

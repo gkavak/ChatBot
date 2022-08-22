@@ -12,6 +12,6 @@ namespace ChatBot.Managers.Abstract
     public interface IChatBotManager
     {
         Task<ChatBotResponseDTO> AskQuestionParsed(IResolvable menu_or_question);
-        Task<IDataResult<ChatBotResponseDTO>> AskQuestion(string useranswer);
+        Task<IDataResult<ChatBotResponseDTO>> AskQuestion(UserQuestionDTO useranswer);
     }
 }

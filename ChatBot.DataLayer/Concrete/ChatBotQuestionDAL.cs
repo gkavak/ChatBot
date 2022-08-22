@@ -14,7 +14,7 @@ namespace ChatBot.DataLayer.Concrete
 {
     public class ChatBotQuestionDAL : MsSQLDbRepositoryBase<ChatBotQuestionEntity>, IChatBotQuestionDAL
     {
-        public ChatBotQuestionDAL(DbContext dbcontext) : base(dbcontext)
+        public ChatBotQuestionDAL(MsSQLDbContext dbcontext) : base(dbcontext)
         {
 
         }

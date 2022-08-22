@@ -59,7 +59,7 @@ namespace ChatBot.Common.Utils.Security.JWT
         private IEnumerable<Claim> SetClaims(UserDto user, List<OperationClaim> operationClaims)
         {
             var claims = new List<Claim>();
-            claims.AddNameIdentifier(user.Id.ToString());
+            claims.AddNameIdentifier(user.sqlId.ToString());
             claims.AddEmail(user.Email);
             claims.AddName(user.Name);
             claims.AddRoles(operationClaims.Select(c => c.Name).ToArray());

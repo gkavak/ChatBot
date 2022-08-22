@@ -10,23 +10,14 @@ namespace ChatBot.Enitities
         [BsonElement("name")]
         public string Name { get; set; }
 
+        [BsonElement("sqlId")]
+        public int sqlId { get; set; }
+
         [BsonElement("email")]
         public string Email { get; set; }
 
-        [BsonElement("phone")]
-        public string Phone { get; set; }
-
-        [BsonElement("region")]
-        public string Region { get; set; }
-
         [BsonElement("password")]
-        public string Password { get; set; }
-
-        [BsonElement("created_at")]
-        public string CreatedAt { get; set; }
-
-        [BsonElement("modified_at")]
-        public string ModifiedAt { get; set; }
+        public byte[] Password { get; set; }
     }
 }
 

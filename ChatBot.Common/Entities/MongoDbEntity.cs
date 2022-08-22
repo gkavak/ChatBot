@@ -2,6 +2,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +13,18 @@ namespace ChatBot.Common.Entities
     {
         [BsonRepresentation(BsonType.ObjectId)]
         [BsonId]
-        [BsonElement(Order = 0)]
-        public string Id { get; } = ObjectId.GenerateNewId().ToString();
+        [BsonElement("_id")]
+        public string Id { get; set; } = ObjectId.GenerateNewId().ToString();
 
-        [BsonRepresentation(BsonType.DateTime)]
+
+        [BsonElement("created_at")]
         [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
-        [BsonElement(Order = 101)]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        [BsonRepresentation(BsonType.DateTime)]
+
+        [BsonElement("modified_at")]
         [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
-        [BsonElement(Order = 102)]
         public DateTime ModifiedAt { get; set; }
+
     }
 }

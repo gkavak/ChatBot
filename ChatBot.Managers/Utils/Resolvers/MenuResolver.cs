@@ -51,12 +51,12 @@ namespace ChatBot.Managers.Utils.Resolvers
         {
             return _menus[menuId].Split(",").ToList();
         }
-        public async Task<ChatBotResponseDTO> Resolve(Menu menu, IChatBotQuestionManager questionManager, IMapper mapper)
+        public async Task<ChatBotResponseDTO> Resolve(UserQuestion question, IChatBotQuestionManager questionManager, IMapper mapper)
         {
             //use questionDAL to get next menu id
-            string questionId = menu.GetDetails()["selected_question_id"];
+            string questionId = ""+question.selectedQuestionId;
             //if its first request return main menu 
-            string next_menu_id = questionId == "-1" ? "0":mapper.Map<ChatBotQuestionsDTO>(await questionManager.GetQuestion(questionId)).NextMenuId;
+            string next_menu_id = questionId == "-1" ? "0":mapper.Map<ChatBotQuestionsDTO>((await questionManager.GetQuestion(questionId)).Data).NextMenuId;
 
            
             //get question ids included in the menu

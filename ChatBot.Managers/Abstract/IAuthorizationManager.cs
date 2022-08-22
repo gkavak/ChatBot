@@ -14,7 +14,7 @@ namespace ChatBot.Managers.Abstract
     {
         IDataResult<UserDto> Register(UserRegisterDTO userForRegisterDto, string password);
         IDataResult<UserDto> Login(UserLoginDTO userForLoginDto);
-        IResult UserExists(string email);
+        IResult IsUserExists(string email);
         IDataResult<AccessToken> CreateAccessToken(UserDto user);
     }
 }

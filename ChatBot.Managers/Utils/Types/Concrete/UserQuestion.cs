@@ -12,19 +12,19 @@ using System.Threading.Tasks;
 
 namespace ChatBot.Managers.Types.Concrete
 {
-    public class Question : IResolvable
+    public class UserQuestion : IResolvable
     {
-        public string _question_id { get; }
-        public Dictionary<string, string> _details { get; }
-        public Question(string question_id, Dictionary<string, string> details)
-        {
-            _question_id = question_id;
-            _details = details;
-        }
+        public string type { get; set; }
+        public int id { get; set; }
+        public int selectedQuestionId { get; set; }
+        public string otherDetails { get; set; }
 
         public Task<ChatBotResponseDTO> Resolve(IChatBotQuestionManager questionManager, IMapper mapper)
         {
-            return Task.FromResult(QuestionResolver.GetInstance().Resolve(this, questionManager, mapper));
+            if (this.type == "question")
+                return Task.FromResult(QuestionResolver.GetInstance().Resolve(this, questionManager, mapper));
+            else
+                return MenuResolver.GetInstance().Resolve(this, questionManager, mapper);
         }
     }
 }

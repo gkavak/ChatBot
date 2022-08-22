@@ -4,7 +4,7 @@ using ChatBot.Managers.Abstract;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class UserController:ControllerBase
 {
     private readonly IUserManager _userManager;
@@ -14,11 +14,11 @@ public class UserController:ControllerBase
         _userManager = userManager;
     }
 
-    [HttpGet(Name ="GetUserByEmail")]
+    [HttpGet("GetUserByEmail")]
     public async Task<IDataResult<UserDto>> GetUserByEmail(string email) {
         return await this._userManager.GetUserByEmail(email);
     }
-    [HttpPost(Name = "AddUser")]
+    [HttpPost("AddUser")]
     public async Task<ChatBot.Common.Utils.Results.Abstract.IResult> AddUser(UserDto user)
     {
         return await this._userManager.AddUserAsync(user);

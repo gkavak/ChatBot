@@ -10,6 +10,6 @@ namespace ChatBot.Dtos.Abstract
     {
         public string Id { get; }  
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public DateTime ModifiedAt { get; set; }
+        public DateTime ModifiedAt { get; set; }= DateTime.UtcNow;
     }
 }

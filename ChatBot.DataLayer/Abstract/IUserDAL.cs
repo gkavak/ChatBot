@@ -14,5 +14,7 @@ namespace ChatBot.DataLayer.Abstract
     {
         Task<UserEntity> GetUserByEmail(string email);
         Task InsertOneAsync(UserEntity user);
+
+        List<OperationClaim> GetClaims(UserEntity user);
     }
 }

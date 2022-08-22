@@ -9,21 +9,19 @@ namespace ChatBot.Common.Utils.Security.Hashing
     public class HashingHelper
     {
         public static void CreatePasswordHash
-            (string password, out byte[] passwordHash, out byte[] passwordSalt)
+            (string password, out byte[] passwordHash)
         {
-            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            using (var hashingAlg =  System.Security.Cryptography.SHA512.Create())
             {
-                passwordSalt = hmac.Key;
-                passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
-
+                passwordHash = hashingAlg.ComputeHash(Encoding.UTF8.GetBytes(password));
             }
         }
 
-        public static bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        public static bool VerifyPasswordHash(string password, byte[] passwordHash)
         {
-            using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
+            using (var hashingAlg = System.Security.Cryptography.SHA512.Create())
             {
-                var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+                var computedHash = hashingAlg.ComputeHash(Encoding.UTF8.GetBytes(password));
                 for (int i = 0; i < computedHash.Length; i++)
                 {
                     if (computedHash[i] != passwordHash[i])

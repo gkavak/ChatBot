@@ -1,4 +1,5 @@
 ﻿using ChatBot.Common.DataAccess;
+using ChatBot.Common.Entities;
 using ChatBot.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -17,11 +18,18 @@ namespace ChatBot.DataLayer.Concrete
         {
                 _options = options.Value;
         }
+
+    
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(this._options.ConnectionString);
         }
 
         public DbSet<ChatBotQuestionEntity> Questions { get; set; }
+
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
     }
 }
